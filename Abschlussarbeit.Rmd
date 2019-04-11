@@ -1,0 +1,78 @@
+---
+title: "Titel der Arbeit"
+subtitle: "Untertitel"
+type: "Typ der Arbeit"
+author: "Name"
+discipline: "Studiengang"
+date: "today"
+studid: "Matrikelnummer"
+supervisor: "Prof. Dr. Christoph Hanck"
+secondsupervisor: "Prof. Dr. Andreas Behr"
+ssemester: "6. Fachsemester"
+semester: "Sommersemester 2019"
+deadline: "Abgabedatum"
+header-includes:
+  - \usepackage[ngerman]{babel}
+  - \usepackage{setspace}
+  - \onehalfspacing
+output:
+  pdf_document:
+    keep_tex: yes
+    template: template.tex
+    fig_caption: yes
+toc: true
+lot: true
+lof: true
+graphics: true
+biblio-title: Literaturverzeichnis
+fontsize: 11pt
+geometry: lmargin=5cm,rmargin=2.5cm,tmargin=2.5cm,bmargin=2.5cm
+bibliography: references.bib
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r cars}
+summary(cars)
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE, fig.cap="\\label{fig:pressure} Pressure", fig.height=4, fig.pos="t"}
+plot(pressure)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot. You can label the plot above by including the label `\\label{fig:pressure}` in the chunk argument `fig.cap`. A reference to the plot is then made as follows: 
+
+Looking at Figure \ref{fig:pressure} makes me happy.
+
+## Citations
+
+The a *bibtex* bibliography can be used for citations. The file name of the bibliography used in this template is `references.bib`
+
+You can cite a source like this: [@Keil_2012] or @Keil_2012
+
+A cited source will be automatically added to the end of the document.
+
+\pagebreak
+
+## References
+
+
+
+
+
+
+
+
