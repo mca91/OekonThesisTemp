@@ -12,7 +12,6 @@ ssemester: "6. Fachsemester"
 semester: "Sommersemester 2019"
 deadline: "Abgabedatum"
 header-includes:
-  - \usepackage[ngerman]{babel}
   - \usepackage{setspace}
 output:
   pdf_document:
@@ -27,6 +26,7 @@ biblio-title: Literaturverzeichnis
 fontsize: 11pt
 geometry: lmargin=5cm,rmargin=2.5cm,tmargin=2.5cm,bmargin=2.5cm
 bibliography: references.bib
+language: german
 ---
 
 

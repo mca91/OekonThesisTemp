@@ -8,6 +8,7 @@ $if(linestretch)$
 \usepackage{setspace}
 \setstretch{$linestretch$}
 $endif$
+\usepackage{ifthen}
 \usepackage{amssymb,amsmath}
 \usepackage{ifxetex,ifluatex}
 \usepackage{fixltx2e} % provides \textsubscript
@@ -184,6 +185,12 @@ $if(linespread)$
 \linespread{$linespread$}
 $else$
 \onehalfspacing
+$endif$
+
+$if(language)$
+\ifthenelse{\equal{$language$}{german}}{\usepackage[ngerman]{babel}}{\usepackage[english]{babel}}
+$else$
+\usepackage[english]{babel}
 $endif$
 
 \begin{document}
