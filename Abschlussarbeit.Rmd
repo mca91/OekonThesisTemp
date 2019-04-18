@@ -1,16 +1,16 @@
 ---
-title: "Titel der Arbeit"
-subtitle: "Untertitel"
-type: "Typ der Arbeit"
+title: "Title"
+subtitle: "Subtitle"
+type: "Type of Paper"
 author: "Name"
-discipline: "Studiengang"
+discipline: "Study Path"
 date: "today"
-studid: "Matrikelnummer"
+studid: "Matriculation Number"
 supervisor: "Prof. Dr. Christoph Hanck"
 secondsupervisor: "Prof. Dr. Andreas Behr"
-ssemester: "6. Fachsemester"
-semester: "Sommersemester 2019"
-deadline: "Abgabedatum"
+ssemester: "1"
+semester: "Summer Term 2019"
+deadline: "Deadline"
 header-includes:
   - \usepackage{setspace}
 output:
@@ -22,11 +22,11 @@ toc: true
 lot: true
 lof: true
 graphics: true
-biblio-title: Literaturverzeichnis
+biblio-title: References
 fontsize: 11pt
 geometry: lmargin=5cm,rmargin=2.5cm,tmargin=2.5cm,bmargin=2.5cm
 bibliography: references.bib
-language: german
+language: english
 ---
 
 
