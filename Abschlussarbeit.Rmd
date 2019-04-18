@@ -27,6 +27,7 @@ biblio-title: Literaturverzeichnis
 fontsize: 11pt
 geometry: lmargin=5cm,rmargin=2.5cm,tmargin=2.5cm,bmargin=2.5cm
 bibliography: references.bib
+csl: apa_bold.csl
 ---
 
 
@@ -52,7 +53,7 @@ You can also embed plots, for example:
 plot(pressure)
 ```
 
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot. You can label the plot above by including the label `\\label{fig:pressure}` in the chunk argument `fig.cap`. A reference to the plot is then made as follows: 
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot. You can label the plot above by including the label `\\label{fig:pressure}` in the chunk argument `fig.cap`. A reference to the plot is then made as follows:
 
 Looking at Figure \ref{fig:pressure} makes me happy.
 
@@ -60,18 +61,11 @@ Looking at Figure \ref{fig:pressure} makes me happy.
 
 The a *bibtex* bibliography can be used for citations. The file name of the bibliography used in this template is `references.bib`
 
-You can cite a source like this: [@Keil_2012] or @Keil_2012
+You can cite a source like this: [@Keil_2012] or @Litterman1986.
 
 A cited source will be automatically added to the end of the document.
 
 \pagebreak
 
 ## References
-
-
-
-
-
-
-
-
+\indent
