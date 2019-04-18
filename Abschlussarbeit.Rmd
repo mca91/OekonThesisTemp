@@ -14,7 +14,6 @@ deadline: "Abgabedatum"
 header-includes:
   - \usepackage[ngerman]{babel}
   - \usepackage{setspace}
-  - \onehalfspacing
 output:
   pdf_document:
     keep_tex: yes
