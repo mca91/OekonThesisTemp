@@ -180,6 +180,12 @@ $for(header-includes)$
 $header-includes$
 $endfor$
 
+$if(linespread)$
+\linespread{$linespread$}
+$else$
+\onehalfspacing
+$endif$
+
 \begin{document}
 
 %\maketitle
