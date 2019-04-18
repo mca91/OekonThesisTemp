@@ -9,7 +9,7 @@ studid: "Matriculation Number"
 supervisor: "Prof. Dr. Christoph Hanck"
 secondsupervisor: "Prof. Dr. Andreas Behr"
 ssemester: "1"
-semester: "Summer Term 2019"
+estdegree_emester: "Summer Term 2019"
 deadline: "Deadline"
 header-includes:
   - \usepackage{setspace}
