@@ -186,20 +186,38 @@ $else$
 \onehalfspacing
 $endif$
 
+% Language Setup
+
+\usepackage{ifthen}
+\usepackage{iflang}
+\usepackage[super]{nth}
+\usepackage[ngerman, english]{babel}
+
 \begin{document}
+
+$if(language)$
+\ifthenelse{\equal{$language$}{german}}{
+  \selectlanguage{ngerman}
+  }{
+  \selectlanguage{english}
+  }
+$else$
+\selectlanguage{english}
+$endif$
+
 
 %\maketitle
 
 \begin{titlepage}
   \noindent\begin{minipage}{0.6\textwidth}
-	  Universität Duisburg-Essen\\
-	  Fakultät für Wirtschaftswissensschaften\\
-	  Lehrstuhl für Ökonometrie\\
+	  \IfLanguageName{english}{University of Duisburg-Essen}{Universität Duisburg-Essen}\\
+	  \IfLanguageName{english}{Faculty of Business Administration and Economics}{Fakultät für Wirtschaftswissensschaften}\\
+	  \IfLanguageName{english}{Chair of Econometrics}{Lehrstuhl für Ökonometrie}\\
   \end{minipage}
 	\begin{minipage}{0.4\textwidth}
 	  \begin{flushright}
   	  \vspace{-0.5cm}
-  	  \includegraphics*[width=5cm]{Includes/duelogo.jpg} % Hochschullogo
+      \IfLanguageName{english}{\includegraphics*[width=5cm]{Includes/duelogo_en.png}}{\includegraphics*[width=5cm]{Includes/duelogo_de.png}}
 	  \end{flushright}
 	\end{minipage}
   \\
@@ -211,63 +229,64 @@ $endif$
   \vspace{0.5cm}
   \large{$type$}\\
   \vspace{1cm}
-  \large{Vorgelegt der Fakultät für Wirtschaftswissenschaften der \\ Universität Duisburg-Essen}\\
+  \large{
+  \IfLanguageName{english}{Submitted to the Faculty of \\ Business Administration and Economics \\at the \\University of Duisburg-Essen}{Vorgelegt der \\Fakultät für Wirtschaftswissenschaften der \\ Universität Duisburg-Essen}\\}
   \vspace{0.75cm}
-  \large{von:}\\
+  \large{\IfLanguageName{english}{from:}{von:}}\\
   \vspace{0.5cm}
   $author$\\
   \end{center}
   \vspace{4cm}
-  
+
   \noindent\begin{minipage}[t]{0.3\textwidth}
-  Matrikelnummer:
+  \IfLanguageName{english}{Matriculation Number}{Matrikelnummer}
   \end{minipage}
   \begin{minipage}[t]{0.7\textwidth}
   \hspace{1cm}$studid$
-  \end{minipage}  
-  
+  \end{minipage}
+
   \noindent\begin{minipage}[t]{0.3\textwidth}
-  Studienfach:
+  \IfLanguageName{english}{Study Path:}{Studienfach:}
   \end{minipage}
   \begin{minipage}[t]{0.7\textwidth}
   \hspace{1cm}$discipline$
-  \end{minipage}   
- 
+  \end{minipage}
+
   \noindent\begin{minipage}[t]{0.3\textwidth}
-  Erstgutachter:
+  \IfLanguageName{english}{Reviewer:}{Erstgutachter:}
   \end{minipage}
   \begin{minipage}[t]{0.7\textwidth}
   \hspace{1cm}$supervisor$
   \end{minipage}
-  
+
   \noindent\begin{minipage}[t]{0.3\textwidth}
-  Zweitgutachter:
+  \IfLanguageName{english}{Secondary Reviewer:}{Zweitgutachter}
   \end{minipage}
   \begin{minipage}[t]{0.7\textwidth}
   \hspace{1cm}$secondsupervisor$
-  \end{minipage} 
-  
+  \end{minipage}
+
   \noindent\begin{minipage}[t]{0.3\textwidth}
   Semester:
   \end{minipage}
   \begin{minipage}[t]{0.7\textwidth}
-  \hspace{1cm}$ssemester$
-  \end{minipage} 
-  
+  \hspace{1cm}\IfLanguageName{english}{\nth{$ssemester$} Semester}{$ssemester$. Fachsemester}
+  \end{minipage}
+
   \noindent\begin{minipage}[t]{0.3\textwidth}
-  Vsl. Studienabschluss:
+  \IfLanguageName{english}{Graduation (est.):}{Vsl. Studienabschluss:}
   \end{minipage}
   \begin{minipage}[t]{0.7\textwidth}
-  \hspace{1cm}$semester$
-  \end{minipage} 
-  
+  \hspace{1cm}$estdegree_emester$
+  \end{minipage}
+
   \noindent\begin{minipage}[t]{0.3\textwidth}
-  Abgabedatum:
+  \IfLanguageName{english}{Deadline:}{Abgabefrist:}
   \end{minipage}
   \begin{minipage}[t]{0.7\textwidth}
   \hspace{1cm}$deadline$
   \end{minipage}
-     
+
 \end{titlepage}
 
 $if(abstract)$
