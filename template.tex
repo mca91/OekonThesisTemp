@@ -54,12 +54,17 @@ $if(lang)$
   \usepackage[shorthands=off,$lang$]{babel}
 \fi
 $endif$
+
+%% citation setup
+
+\usepackage{csquotes}
+
 $if(natbib)$
 \usepackage{natbib}
 \bibliographystyle{$if(biblio-style)$$biblio-style$$else$plainnat$endif$}
 $endif$
 $if(biblatex)$
-\usepackage{biblatex}
+\usepackage[backend=biber, maxbibnames = 99, style = apa]{biblatex}
 $if(biblio-files)$
 \bibliography{$biblio-files$}
 $endif$
