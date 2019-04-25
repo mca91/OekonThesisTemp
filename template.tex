@@ -4,10 +4,7 @@ $if(fontfamily)$
 $else$
 \usepackage{lmodern}
 $endif$
-$if(linestretch)$
-\usepackage{setspace}
-\setstretch{$linestretch$}
-$endif$
+
 \usepackage{amssymb,amsmath}
 \usepackage{ifxetex,ifluatex}
 \usepackage{fixltx2e} % provides \textsubscript
@@ -179,6 +176,10 @@ $endif$
 $for(header-includes)$
 $header-includes$
 $endfor$
+
+%% linespread settings
+
+\usepackage{setspace}
 
 $if(linespread)$
 \linespread{$linespread$}
