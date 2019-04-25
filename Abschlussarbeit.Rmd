@@ -19,6 +19,7 @@ output:
     keep_tex: yes
     template: template.tex
     fig_caption: yes
+    citation_package: biblatex
 toc: true
 lot: true
 lof: true
@@ -26,10 +27,8 @@ graphics: true
 biblio-title: Literaturverzeichnis
 fontsize: 11pt
 geometry: lmargin=5cm,rmargin=2.5cm,tmargin=2.5cm,bmargin=2.5cm
-bibliography: references.bib
-csl: apa_bold.csl
+biblio-files: references.bib
 ---
-
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
@@ -67,5 +66,3 @@ A cited source will be automatically added to the end of the document.
 
 \pagebreak
 
-## References
-\indent
