@@ -1,0 +1,5 @@
+**/Abschlussarbeit_files
+*.log
+.DS_Store
+*.pdf
+Abschlussarbeit.tex
