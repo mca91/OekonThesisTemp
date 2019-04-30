@@ -25,7 +25,6 @@ biblio-title: References
 fontsize: 11pt
 geometry: lmargin=5cm,rmargin=2.5cm,tmargin=2.5cm,bmargin=2.5cm
 biblio-files: references.bib
-language: english
 ---
 
 ```{r setup, include=FALSE}
@@ -53,6 +52,27 @@ plot(pressure)
 Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot. You can label the plot above by including the label `\\label{fig:pressure}` in the chunk argument `fig.cap`. A reference to the plot is then made as follows:
 
 Looking at Figure \ref{fig:pressure} makes me happy.
+
+## The YAML Header
+
+The YAML Header is at the very top of this document. It is enclosed in 3 dashes.
+Although there are already some options specified you might want to change some additional things. Here are some useful things that we have implemented for you.
+
+### language
+
+You can either set this to english or german. If the language is not specified in the YAML header it will use english e.g.:
+
+language: english
+
+language: german
+
+This variable affects mainly the headings of your output file.
+
+### linespread
+
+The default value for the linespread is 1.5. Usually this is fine and sometimes it's required. If you nevertheless want to change it you can do so by specifying the linespread variable. E.g.:
+
+linespread: 1
 
 ## Citations
 
