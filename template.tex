@@ -65,6 +65,7 @@ $if(natbib)$
 $endif$
 $if(biblatex)$
 \usepackage[backend=biber, maxbibnames = 99, style = apa]{biblatex}
+\setlength\bibitemsep{1.5\itemsep}
 $if(biblio-files)$
 \bibliography{$biblio-files$}
 $endif$
