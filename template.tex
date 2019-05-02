@@ -65,6 +65,7 @@ $if(natbib)$
 $endif$
 $if(biblatex)$
 \usepackage[backend=biber, maxbibnames = 99, style = apa]{biblatex}
+\setlength\bibitemsep{1.5\itemsep}
 $if(biblio-files)$
 \bibliography{$biblio-files$}
 $endif$
@@ -339,6 +340,10 @@ $endif$
 $endif$
 $endif$
 $if(biblatex)$
+\renewcommand*{\mkbibnamefamily}[1]{\textbf{#1}}
+\renewcommand*{\mkbibnamegiven}[1]{\textbf{#1}}
+\renewcommand*{\mkbibnameprefix}[1]{\textbf{#1}}
+\renewcommand*{\mkbibnamesuffix}[1]{\textbf{#1}}
 \printbibliography$if(biblio-title)$[title=$biblio-title$]$endif$
 $endif$
 $for(include-after)$
