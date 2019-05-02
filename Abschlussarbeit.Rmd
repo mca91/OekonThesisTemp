@@ -17,6 +17,7 @@ output:
     template: template.tex
     fig_caption: yes
     citation_package: biblatex
+    number_sections: true
 toc: true
 lot: true
 lof: true
@@ -27,9 +28,13 @@ geometry: lmargin=5cm,rmargin=2.5cm,tmargin=2.5cm,bmargin=2.5cm
 biblio-files: references.bib
 ---
 
+<!-- % Template Version 1.1 -->
+
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
+
+# Rmarkdown Template
 
 ## R Markdown
 
@@ -73,6 +78,49 @@ This variable affects mainly the headings of your output file.
 The default value for the linespread is 1.5. Usually this is fine and sometimes it's required. If you nevertheless want to change it you can do so by specifying the linespread variable. E.g.:
 
 linespread: 1
+
+# How Rmarkdown makes your life easy
+
+## The kable function
+
+In Empirical work it's crucial not only to present your results but also to explain your research strategy. Often times that involes creating tables to present the used data and creating tables to show your results. Creating tables (e.g. in Latex) by hand is hard and time consuming but there are a variety of packages out there that can automate this job for you. One of them is the kable package. It can produce Latex tables from a variety of R Objects.
+
+Consider the following Example: you are working on an analysis of black cherry trees and want to present n observations to the reader You can do that using the knitr::kable() function.
+
+```{r, echo=FALSE}
+data(trees)
+n <- 6
+knitr::kable(trees[sample(1:nrow(trees),n),], 
+             caption = paste(n, "Observations from the trees Dataset"),
+             row.names = F,
+             col.names = c("Diameter", "Height", "Volume"))
+```
+
+Now that we have presented our data it's analysis time! Lets start with a quick call to summary().
+
+## The Stargazer package
+
+Calling summary() in a code chunk will work but this will give you quite an ugly result (just try it for yourself!). When it comes to presenting more structured objects like summaries, model results or for example correlation matrices the stargazer package is well suited.
+
+```{r, results='asis', echo=FALSE}
+stargazer::stargazer(trees, header=FALSE, title = "Summary")
+```
+
+Assume we want to evaluate how the height and the volume of a typical cherry tree are related. We are estimating this using OLS to estimate a simple linear model.
+
+```{r, results='asis', echo = FALSE}
+mod <- lm(Volume ~ Height, data = trees)
+stargazer::stargazer(mod, title = "Regression results", header=FALSE)
+```
+
+Now that we have our model we can visualize it.
+
+```{r, echo = FALSE, fig.cap= "Dataset and regression"}
+plot(trees$Volume ~ trees$Height)
+abline(mod)
+```
+
+\pagebreak
 
 ## Citations
 
