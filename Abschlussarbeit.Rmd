@@ -28,6 +28,8 @@ geometry: lmargin=5cm,rmargin=2.5cm,tmargin=2.5cm,bmargin=2.5cm
 biblio-files: references.bib
 ---
 
+<!-- % Template Version 1.1 -->
+
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
