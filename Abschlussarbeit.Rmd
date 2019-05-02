@@ -17,6 +17,7 @@ output:
     template: template.tex
     fig_caption: yes
     citation_package: biblatex
+    number_sections: true
 toc: true
 lot: true
 lof: true
@@ -30,6 +31,8 @@ biblio-files: references.bib
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
+
+# Rmarkdown Template
 
 ## R Markdown
 
