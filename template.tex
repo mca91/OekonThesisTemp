@@ -225,6 +225,8 @@ $endif$
 
 %\maketitle
 
+\newgeometry{left=2cm,right=1cm,bottom=2cm,top=2cm}
+
 \begin{titlepage}
   \noindent\begin{minipage}{0.6\textwidth}
 	  \IfLanguageName{english}{University of Duisburg-Essen}{Universität Duisburg-Essen}\\
@@ -255,49 +257,49 @@ $endif$
   \end{center}
   \vspace{4cm}
 
-  \noindent\begin{minipage}[t]{0.3\textwidth}
-  \IfLanguageName{english}{Matriculation Number}{Matrikelnummer}
+  \noindent\begin{minipage}[t]{0.5\textwidth}
+  \IfLanguageName{english}{Matriculation Number:}{Matrikelnummer}
   \end{minipage}
   \begin{minipage}[t]{0.7\textwidth}
   \hspace{1cm}$studid$
   \end{minipage}
 
-  \noindent\begin{minipage}[t]{0.3\textwidth}
+  \noindent\begin{minipage}[t]{0.5\textwidth}
   \IfLanguageName{english}{Study Path:}{Studienfach:}
   \end{minipage}
   \begin{minipage}[t]{0.7\textwidth}
   \hspace{1cm}$discipline$
   \end{minipage}
 
-  \noindent\begin{minipage}[t]{0.3\textwidth}
+  \noindent\begin{minipage}[t]{0.5\textwidth}
   \IfLanguageName{english}{Reviewer:}{Erstgutachter:}
   \end{minipage}
   \begin{minipage}[t]{0.7\textwidth}
   \hspace{1cm}$supervisor$
   \end{minipage}
 
-  \noindent\begin{minipage}[t]{0.3\textwidth}
+  \noindent\begin{minipage}[t]{0.5\textwidth}
   \IfLanguageName{english}{Secondary Reviewer:}{Zweitgutachter}
   \end{minipage}
   \begin{minipage}[t]{0.7\textwidth}
   \hspace{1cm}$secondsupervisor$
   \end{minipage}
 
-  \noindent\begin{minipage}[t]{0.3\textwidth}
+  \noindent\begin{minipage}[t]{0.5\textwidth}
   Semester:
   \end{minipage}
   \begin{minipage}[t]{0.7\textwidth}
   \hspace{1cm}\IfLanguageName{english}{\nth{$ssemester$} Semester}{$ssemester$. Fachsemester}
   \end{minipage}
 
-  \noindent\begin{minipage}[t]{0.3\textwidth}
+  \noindent\begin{minipage}[t]{0.5\textwidth}
   \IfLanguageName{english}{Graduation (est.):}{Vsl. Studienabschluss:}
   \end{minipage}
   \begin{minipage}[t]{0.7\textwidth}
   \hspace{1cm}$estdegree_emester$
   \end{minipage}
 
-  \noindent\begin{minipage}[t]{0.3\textwidth}
+  \noindent\begin{minipage}[t]{0.5\textwidth}
   \IfLanguageName{english}{Deadline:}{Abgabefrist:}
   \end{minipage}
   \begin{minipage}[t]{0.7\textwidth}
@@ -305,6 +307,9 @@ $endif$
   \end{minipage}
 
 \end{titlepage}
+
+% Ends the declared geometry for the titlepage
+\restoregeometry
 
 $if(abstract)$
 \begin{abstract}
