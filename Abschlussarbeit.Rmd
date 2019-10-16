@@ -29,7 +29,7 @@ biblio-files: references.bib
 classoption: a4paper
 ---
 
-<!-- % Template Version 1.1 -->
+<!-- % Template Version 1.2 -->
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
