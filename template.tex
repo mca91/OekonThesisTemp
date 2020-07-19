@@ -208,22 +208,18 @@ $endif$
 \usepackage{ifthen}
 \usepackage{iflang}
 \usepackage[super]{nth}
-\usepackage[ngerman, english]{babel}
-
-\begin{document}
 
 $if(language)$
 \ifthenelse{\equal{$language$}{german}}{
-  \selectlanguage{ngerman}
+  \usepackage[ngerman]{babel}
   }{
-  \selectlanguage{english}
+  \usepackage[english]{babel}
   }
 $else$
-\selectlanguage{english}
+\usepackage[english]{babel}
 $endif$
 
-
-%\maketitle
+\begin{document}
 
 \newgeometry{left=2cm,right=1cm,bottom=2cm,top=2cm}
 
