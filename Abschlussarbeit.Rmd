@@ -22,18 +22,20 @@ toc: true
 lot: true
 lof: true
 graphics: true
+tables: true
 biblio-title: References
 fontsize: 11pt
 geometry: lmargin=5cm,rmargin=2.5cm,tmargin=2.5cm,bmargin=2.5cm
 biblio-files: references.bib
 classoption: a4paper
-language: german
+language: english
 ---
-
-<!-- % Template Version 1.2 -->
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+library(gt)
+library(dplyr)
+library(broom)
 ```
 
 # Rmarkdown Template
@@ -42,91 +44,122 @@ knitr::opts_chunk$set(echo = TRUE)
 
 This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
 
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
-
 ```{r cars}
 summary(cars)
 ```
 
 ## Including Plots
 
-You can also embed plots, for example:
-
 ```{r pressure, echo=FALSE, fig.cap="\\label{fig:pressure} Pressure", fig.height=4, fig.pos="t"}
 plot(pressure)
 ```
 
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot. You can label the plot above by including the label `\\label{fig:pressure}` in the chunk argument `fig.cap`. A reference to the plot is then made as follows:
-
 Looking at Figure \ref{fig:pressure} makes me happy.
-
-## The YAML Header
-
-The YAML Header is at the very top of this document. It is enclosed in 3 dashes.
-Although there are already some options specified you might want to change some additional things. Here are some useful things that we have implemented for you.
-
-### language
-
-You can either set this to english or german. If the language is not specified in the YAML header it will use english e.g.:
-
-language: english
-
-language: german
-
-This variable affects mainly the headings of your output file.
-
-### linespread
-
-The default value for the linespread is 1.5. Usually this is fine and sometimes it's required. If you nevertheless want to change it you can do so by specifying the linespread variable. E.g.:
-
-linespread: 1
 
 # How Rmarkdown makes your life easy
 
-## The kable function
+## The gt package
 
-In Empirical work it's crucial not only to present your results but also to explain your research strategy. Often times that involes creating tables to present the used data and creating tables to show your results. Creating tables (e.g. in Latex) by hand is hard and time consuming but there are a variety of packages out there that can automate this job for you. One of them is the kable package. It can produce Latex tables from a variety of R Objects.
+In empirical work, it's crucial not only to present your results but also to explain your research strategy. Often that involves presenting data and results in a tabular format. The `gt` package provides a modern and flexible way to generate high-quality LaTeX or HTML tables from R objects.
 
-Consider the following Example: you are working on an analysis of black cherry trees and want to present n observations to the reader You can do that using the knitr::kable() function.
+### Showing data using gt
 
-```{r, echo=FALSE}
+```{r, message=FALSE, warning=FALSE, results='asis'}
 data(trees)
 n <- 6
-knitr::kable(trees[sample(1:nrow(trees),n),], 
-             caption = paste(n, "Observations from the trees Dataset"),
-             row.names = F,
-             col.names = c("Diameter", "Height", "Volume"))
+trees_sample <- trees %>%
+  slice_sample(n = n) %>%
+  mutate(Row = row_number()) %>%
+  relocate(Row)
+
+gt_latex <- trees_sample %>%
+  gt() %>%
+  tab_header(
+    title = md(
+      paste(n, "Observations from the `trees` Dataset")
+      )
+  ) %>%
+  cols_label(
+    Girth = "Diameter",
+    Height = "Height",
+    Volume = "Volume"
+  ) %>%
+  tab_options(
+    latex.tbl.pos = "H", 
+    latex.use_longtable = FALSE
+  ) %>%
+  as_latex()
+
+# Replace \begin{table} with \begin{table}[H]
+gt_latex <- gsub(
+  "\\\\begin\\{table\\}", 
+  "\\\\begin{table}[H]", 
+  gt_latex
+)
+
+cat(gt_latex)
 ```
 
-Now that we have presented our data it's analysis time! Lets start with a quick call to summary().
+### Regression summary with `gt`
 
-## The Stargazer package
-
-Calling summary() in a code chunk will work but this will give you quite an ugly result (just try it for yourself!). When it comes to presenting more structured objects like summaries, model results or for example correlation matrices the stargazer package is well suited.
-
-```{r, results='asis', echo=FALSE}
-stargazer::stargazer(trees, header=FALSE, title = "Summary")
-```
-
-Assume we want to evaluate how the height and the volume of a typical cherry tree are related. We are estimating this using OLS to estimate a simple linear model.
-
-```{r, results='asis', echo = FALSE}
+```{r, message=FALSE, warning=FALSE, results='asis'}
 mod <- lm(Volume ~ Height, data = trees)
-stargazer::stargazer(mod, title = "Regression results", header=FALSE)
+mod_summary <- tidy(mod)
+
+gt_latex <- mod_summary %>%
+  mutate(term = recode(
+    term, "(Intercept)" = "Intercept")
+    ) %>%
+  gt() %>%
+  tab_header(
+    title = "OLS Regression: Volume ~ Height"
+  ) %>%
+  fmt_number(
+    columns = where(is.numeric),
+    decimals = 3
+  ) %>%
+  cols_label(
+    term = "Term",
+    estimate = "Estimate",
+    std.error = "Std. Error",
+    statistic = "t Statistic",
+    p.value = "p-Value"
+  ) %>%
+  as_latex()
+
+# Replace \begin{table} with \begin{table}[H]
+gt_latex <- gsub(
+  "\\\\begin\\{table\\}", 
+  "\\\\begin{table}[H]", 
+  gsub(
+    "caption\\*", 
+    "caption", 
+    gsub(
+      "\\\\begin\\{tabular\\*\\}", 
+      "\\\\label{tab:olsrestab}\n\\\\begin{tabular*}", 
+      gt_latex
+    )
+  )
+)
+
+cat(gt_latex)
 ```
 
-Now that we have our model we can visualize it.
+Table \ref{tab:olsrestab} is a table with a label and thus can be referenced. Captioned tables will appear in the LOT.
 
-```{r, echo = FALSE, fig.cap= "Dataset and regression"}
-plot(trees$Volume ~ trees$Height)
-abline(mod)
+### Visualizing the model
+
+```{r, fig.cap="Dataset and regression"}
+plot(trees$Volume ~ trees$Height,
+     xlab = "Height", 
+     ylab = "Volume",
+     main = "Linear Regression: Volume ~ Height")
+abline(mod, col = "blue", lwd = 2)
 ```
-
-\pagebreak
 
 ## Citations
 
-The a *bibtex* bibliography can be used for citations. The file name of the bibliography used in this template is `references.bib`
+A *bibtex* bibliography (see the fil `references.bib`) can be used for citations. The file name of the bibliography used in this template is `references.bib`.
 
 You can cite a source like this: [@Keil_2012] or @Litterman1986.
 
