@@ -1,16 +1,21 @@
 ---
 title: "Title"
-subtitle: "Subtitle"
+#subtitle: "Subtitle"
 type: "Type of Paper"
-author: "Name"
+author:
+  - name: "Author One"
+    studid: "12345678"
+  - name: "Author Two"
+    studid: "87654321"
 discipline: "Study Path"
 date: "today"
-studid: "Matriculation Number"
-supervisor: "Prof. Dr. Christoph Hanck"
-secondsupervisor: "Prof. Dr. Andreas Behr"
+supervisor:
+  - "Prof. Dr. Christoph Hanck"
+  - "Prof. Dr. Andreas Behr"
+#secondsupervisor: "Prof. Dr. Andreas Behr"
 ssemester: "1"
-estdegree_emester: "Summer Term 2019"
-deadline: "Deadline"
+#estdegree_semester: "Summer Term 2019"
+#deadline: "Deadline"
 output:
   pdf_document:
     keep_tex: yes
@@ -64,7 +69,7 @@ In empirical work, it's crucial not only to present your results but also to exp
 
 ### Showing data using gt
 
-```{r, message=FALSE, warning=FALSE, results='asis'}
+```{r, message=FALSE, warning=FALSE, echo=FALSE, results='asis'}
 data(trees)
 n <- 6
 trees_sample <- trees %>%
@@ -102,7 +107,7 @@ cat(gt_latex)
 
 ### Regression summary with `gt`
 
-```{r, message=FALSE, warning=FALSE, results='asis'}
+```{r, message=FALSE, warning=FALSE, echo=FALSE, results='asis'}
 mod <- lm(Volume ~ Height, data = trees)
 mod_summary <- tidy(mod)
 
@@ -159,7 +164,7 @@ abline(mod, col = "blue", lwd = 2)
 
 ## Citations
 
-A *bibtex* bibliography (see the fil `references.bib`) can be used for citations. The file name of the bibliography used in this template is `references.bib`.
+A *bibtex* bibliography (see the file `references.bib`) can be used for citations. The file name of the bibliography used in this template is `references.bib`.
 
 You can cite a source like this: [@Keil_2012] or @Litterman1986.
 
